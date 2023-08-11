@@ -31,12 +31,17 @@ try:
                                   # пароль, который указали при установке PostgreSQL
                                   password="postgres",
                                   host="127.0.0.1",
-                                  port="5432")
+                                  port="5432",
+                                  database="week_rep")
     connection.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     # Курсор для выполнения операций с базой данных
     cursor = connection.cursor()
-    sql_create_database = 'drop database postgres_db'
-    cursor.execute(sql_create_database)
+#    sql_create_database = 'drop database postgres_db'
+#    cursor.execute(sql_create_database)
+    sql_select = 'select * from ptc_grp'
+    cursor.execute(sql_select)
+    record = cursor.fetchall()
+    print(record)
 except (Exception, Error) as error:
     print("Ошибка при работе с PostgreSQL", error)
 finally:
